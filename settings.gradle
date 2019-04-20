@@ -1,4 +1,5 @@
 rootProject.name = 'nullfree'
 include 'plugin'
 include 'lib'
+include 'service'
 

@@ -1,7 +1,7 @@
 allprojects {
     ext {
         group = 'com.nikialeksey'
-        version = '3.0.2'
+        version = '0.0.1'
     }
     repositories {
         mavenCentral()

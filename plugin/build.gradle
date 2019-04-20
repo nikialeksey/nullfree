@@ -3,10 +3,30 @@ plugins {
     id 'com.gradle.plugin-publish' version '0.10.0'
 }
 
+pluginBundle {
+    website = 'https://github.com/nikialeksey/nullfree'
+    vcsUrl = 'https://github.com/nikialeksey/nullfree'
+    tags = ['java', 'oop', 'nullfree']
+}
+
+gradlePlugin {
+    plugins {
+        greetingsPlugin {
+            id = 'com.nikialeksey.nullfree'
+            displayName = 'Nullfree'
+            description = 'Nullfree - is the plugin for checking null in your project'
+            implementationClass = 'com.nikialeksey.nullfree.NullfreePlugin'
+        }
+    }
+}
+
 sourceCompatibility = 1.8
 group ext.group
 version ext.version
 
 dependencies {
+    implementation gradleApi()
+    implementation project(':lib')
+    implementation 'org.eclipse.jgit:org.eclipse.jgit:5.2.0.201812061821-r'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

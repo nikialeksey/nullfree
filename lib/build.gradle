@@ -9,6 +9,7 @@ sourceCompatibility = 1.8
 
 dependencies {
     implementation 'com.github.javaparser:javaparser-symbol-solver-core:3.13.6'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.8'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
@@ -20,3 +21,87 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
+
+ext {
+    bintrayName = 'nullfree'
+    artifact = 'nullfree'
+    libraryName = 'nullfree'
+
+    libraryDescription = 'Null checking library'
+
+    bintrayRepo = 'java'
+    publishedGroupId = 'com.nikialeksey'
+
+    siteUrl = 'https://github.com/nikialeksey/nullfree'
+    gitUrl = 'https://github.com/nikialeksey/nullfree.git'
+
+    libraryVersion = version
+
+    developerId = 'nikialeksey'
+    developerName = 'Alexey Nikitin'
+    developerEmail = 'nikialeksey@gmail.com'
+    licenseName = 'MIT License'
+    licenseUrl = 'https://github.com/nikialeksey/nullfree/blob/master/LICENSE'
+    allLicenses = ['MIT']
+}
+if (project.rootProject.file('local.properties').exists()) {
+    apply plugin: 'maven'
+    group = publishedGroupId
+    install {
+        repositories.mavenInstaller {
+            pom.project {
+                packaging 'jar'
+                groupId publishedGroupId
+                artifactId artifact
+
+                name libraryName
+                description libraryDescription
+                url siteUrl
+
+                licenses {
+                    license {
+                        name licenseName
+                        url licenseUrl
+                    }
+                }
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+
+    apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+    apply plugin: 'maven-publish'
+    publishing {
+        publications {
+            arspell_android(MavenPublication) {
+                artifact(sourcesJar)
+                artifact("$buildDir/libs/lib-${libraryVersion}.jar")
+
+                groupId publishedGroupId
+                artifactId artifact
+                version libraryVersion
+
+                pom.withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    def dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', 'org.apache.commons')
+                    dependencyNode.appendNode('artifactId', 'commons-text')
+                    dependencyNode.appendNode('version', '1.6')
+                }
+            }
+        }
+    }
+    bintray.publications = ['arspell_android']
+    bintray.configurations = []
+}

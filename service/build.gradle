@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group ext.group
+version ext.version
+
+sourceCompatibility = 1.8
+
+dependencies {
+    implementation 'org.takes:takes:1.16'
+    implementation 'commons-io:commons-io:2.6'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.8'
+    testImplementation project(':lib')
+    testImplementation project(':plugin')
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+mainClassName = 'com.nikialeksey.nullfree.Main'
