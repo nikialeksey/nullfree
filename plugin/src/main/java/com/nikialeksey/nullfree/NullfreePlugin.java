@@ -26,7 +26,7 @@ public class NullfreePlugin implements Plugin<Project> {
                     ).badge().send(
                         new URL(
                             String.format(
-                                "https://iwillfailyou/%s/%s",
+                                "https://iwillfailyou.com/nullfree/%s/%s",
                                 origin.user(),
                                 origin.repo()
                             )

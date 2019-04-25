@@ -1,11 +1,11 @@
 plugins {
-    id 'java'
+    id 'java-library'
     id 'jacoco'
+    id 'com.jfrog.bintray' version '1.8.4'
 }
 
-group ext.group
-version ext.version
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
     implementation 'com.github.javaparser:javaparser-symbol-solver-core:3.13.6'
@@ -84,7 +84,8 @@ if (project.rootProject.file('local.properties').exists()) {
     apply plugin: 'maven-publish'
     publishing {
         publications {
-            arspell_android(MavenPublication) {
+            nullfree_lib(MavenPublication) {
+                artifact(javadocJar)
                 artifact(sourcesJar)
                 artifact("$buildDir/libs/lib-${libraryVersion}.jar")
 
@@ -92,16 +93,47 @@ if (project.rootProject.file('local.properties').exists()) {
                 artifactId artifact
                 version libraryVersion
 
+                pom {
+                    name = libraryName
+                    description = libraryDescription
+
+                    url = siteUrl
+
+                    licenses {
+                        license {
+                            name = licenseName
+                            url = licenseUrl
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = developerId
+                            name = developerName
+                            email = developerEmail
+                        }
+                    }
+                    scm {
+                        connection = gitUrl
+                        developerConnection = gitUrl
+                        url = siteUrl
+                    }
+                }
+
                 pom.withXml {
                     def dependenciesNode = asNode().appendNode('dependencies')
                     def dependencyNode = dependenciesNode.appendNode('dependency')
-                    dependencyNode.appendNode('groupId', 'org.apache.commons')
-                    dependencyNode.appendNode('artifactId', 'commons-text')
-                    dependencyNode.appendNode('version', '1.6')
+                    dependencyNode.appendNode('groupId', 'com.github.javaparser')
+                    dependencyNode.appendNode('artifactId', 'javaparser-symbol-solver-core')
+                    dependencyNode.appendNode('version', '3.13.6')
+
+                    dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', 'org.apache.httpcomponents')
+                    dependencyNode.appendNode('artifactId', 'httpclient')
+                    dependencyNode.appendNode('version', '4.5.8')
                 }
             }
         }
     }
-    bintray.publications = ['arspell_android']
+    bintray.publications = ['nullfree_lib']
     bintray.configurations = []
 }
