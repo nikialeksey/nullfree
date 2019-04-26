@@ -29,7 +29,7 @@ public class ShieldsIoBadge implements Badge {
         if (nullCount == 0) {
             message = "approved";
         } else {
-            message = "denied";
+            message = "declined";
         }
         final String color;
         if (nullCount == 0) {
