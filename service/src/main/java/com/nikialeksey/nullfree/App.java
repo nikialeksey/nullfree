@@ -15,10 +15,15 @@ public class App implements Take {
     public App() {
         this(
             new TkFork(
-                new FkRegex("/", "Nullfree"),
+                new FkRegex("/nullfree(/)?", "Nullfree"),
                 new FkRegex(
-                    "/(?<user>[^/]+)/(?<repo>[^/]+)",
-                    new RepoInfo()
+                    "/nullfree/.+",
+                    new TkFork(
+                        new FkRegex(
+                            "/nullfree/(?<user>[^/]+)/(?<repo>[^/]+)",
+                            new RepoInfo()
+                        )
+                    )
                 )
             )
         );

@@ -5,6 +5,7 @@ import org.takes.facets.fork.RqRegex;
 import org.takes.facets.fork.TkRegex;
 import org.takes.rq.RqMethod;
 import org.takes.rq.form.RqFormBase;
+import org.takes.rs.RsRedirect;
 import org.takes.rs.RsWithBody;
 import org.takes.rs.RsWithStatus;
 
@@ -28,7 +29,7 @@ public class RepoInfo implements TkRegex {
             store.put(path, new RqFormBase(req).param("badgeUrl").iterator().next());
             return new RsWithStatus(new RsWithBody("Saved!\n"), HttpURLConnection.HTTP_OK);
         } else if (store.containsKey(path)) {
-            return new RsWithStatus(new RsWithBody(store.get(path)), HttpURLConnection.HTTP_OK);
+            return new RsRedirect(store.get(path));
         } else {
             return new RsWithStatus(HttpURLConnection.HTTP_NOT_FOUND);
         }

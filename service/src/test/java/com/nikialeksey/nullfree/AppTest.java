@@ -1,7 +1,9 @@
 package com.nikialeksey.nullfree;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
@@ -9,6 +11,7 @@ import org.junit.Test;
 import org.takes.http.FtRemote;
 
 import java.io.File;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
@@ -30,7 +33,7 @@ public class AppTest {
                 ).badge().send(
                     new URL(
                         String.format(
-                            "%s/%s/%s",
+                            "%s/nullfree/%s/%s",
                             home.toString(),
                             origin.user(),
                             origin.repo()
@@ -38,14 +41,18 @@ public class AppTest {
                     )
                 );
 
-                final URL saved = new URL(home.toString() + "/" + origin.user() + "/" + origin.repo());
+                final URL saved = new URL(home.toString() + "/nullfree/" + origin.user() + "/" + origin.repo());
+                final HttpGet request = new HttpGet(saved.toURI());
+                final CloseableHttpClient httpClient = HttpClients.createDefault();
+                final HttpClientContext context = HttpClientContext.create();
+                final CloseableHttpResponse response = httpClient.execute(
+                    request,
+                    context
+                );
+
                 Assert.assertThat(
-                    new BasicResponseHandler().handleResponse(
-                        HttpClients.createDefault().execute(
-                            new HttpGet(saved.toURI())
-                        )
-                    ),
-                    IsEqual.equalTo("https://img.shields.io/badge/nullfree-approved-green.svg")
+                    response.getStatusLine().getStatusCode(),
+                    IsEqual.equalTo(HttpURLConnection.HTTP_OK)
                 );
             } catch (Exception e) {
                 throw new RuntimeException(e);
