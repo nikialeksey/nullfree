@@ -21,12 +21,11 @@ does not contain `null`, else if project contains at least one `null` it will lo
 ## For what?
 
 [Based on statistics from Overops](https://blog.overops.com/the-top-10-exceptions-types-in-production-java-applications-based-on-1b-events/)
-[`NullPointerException`](https://docs.oracle.com/javase/8/docs/api/?java/lang/NullPointerException.html).
+[`NullPointerException`](https://docs.oracle.com/javase/8/docs/api/?java/lang/NullPointerException.html)
 is at the top of all exceptions in Java apps.
 It's simple: if there is no one `null` in a codebase, then
 [`NullPointerException`](https://docs.oracle.com/javase/8/docs/api/?java/lang/NullPointerException.html)
-will be gone.
-> STOP USING NULL!
+will be gone. **Let's stop using `null`!**
 
 ## Getting started
 
