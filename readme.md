@@ -47,7 +47,17 @@ Add your nullfree badge to the project readme:
 ![nullfree status](https://iwillfailyou.com/nullfree/<your nickname>/<your repo>)
 ```
 
-## Changelog
-`1.0.0` - Changed API of nullfree lib, null suppression ability 
-`0.0.2` - First version of service and plugin, self checking nullfree badge
+### Suppress
+You can suppress any null by `@SuppressWarnings("nullfree")` annotation:
+```java
+@SuppressWarnings("nullfree")
+class A {
+    private final String a = null;
+}
+```
+Method, field, variable suppresses are all accessible as well.
 
+## Changelog
+`1.0.0` - Changed API of nullfree lib, null suppression ability
+
+`0.0.2` - First version of service and plugin, self checking nullfree badge
