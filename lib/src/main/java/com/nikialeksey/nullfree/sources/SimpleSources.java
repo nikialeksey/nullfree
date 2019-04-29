@@ -1,4 +1,9 @@
-package com.nikialeksey.nullfree;
+package com.nikialeksey.nullfree.sources;
+
+import com.nikialeksey.nullfree.NullfreeException;
+import com.nikialeksey.nullfree.nulls.Null;
+import com.nikialeksey.nullfree.nulls.Nulls;
+import com.nikialeksey.nullfree.nulls.SimpleNulls;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +29,7 @@ public class SimpleSources implements Sources {
     }
 
     @Override
-    public List<Null> nulls() throws NullfreeException {
+    public Nulls nulls() throws NullfreeException {
         final List<SourceFile> files = new ArrayList<>();
         try {
             Files.walkFileTree(folder.toPath(), new SimpleFileVisitor<Path>() {
@@ -47,8 +52,8 @@ public class SimpleSources implements Sources {
         }
         final List<Null> nulls = new ArrayList<>();
         for (SourceFile file : files) {
-            nulls.addAll(file.nulls());
+            nulls.addAll(file.nulls().asList());
         }
-        return nulls;
+        return new SimpleNulls(nulls);
     }
 }

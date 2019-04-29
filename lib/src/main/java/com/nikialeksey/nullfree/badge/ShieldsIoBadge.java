@@ -1,5 +1,7 @@
-package com.nikialeksey.nullfree;
+package com.nikialeksey.nullfree.badge;
 
+import com.nikialeksey.nullfree.NullfreeException;
+import com.nikialeksey.nullfree.nulls.Nulls;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -12,19 +14,18 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collections;
-import java.util.List;
 
 public class ShieldsIoBadge implements Badge {
 
-    private final List<Null> nulls;
+    private final Nulls nulls;
 
-    public ShieldsIoBadge(List<Null> nulls) {
+    public ShieldsIoBadge(final Nulls nulls) {
         this.nulls = nulls;
     }
 
     @Override
     public URL asUrl() throws NullfreeException {
-        final int nullCount = nulls.size();
+        final int nullCount = nulls.asList().size();
         final String message;
         if (nullCount == 0) {
             message = "approved";

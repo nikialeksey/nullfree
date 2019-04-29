@@ -26,6 +26,7 @@ version ext.version
 
 dependencies {
     implementation gradleApi()
+    // @todo #3:30m Update nullfree version in gradle plugin
     implementation 'com.nikialeksey:nullfree:0.0.2'
     implementation 'org.eclipse.jgit:org.eclipse.jgit:5.2.0.201812061821-r'
     testCompile group: 'junit', name: 'junit', version: '4.12'

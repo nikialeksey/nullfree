@@ -1,4 +1,4 @@
-package com.nikialeksey.nullfree;
+package com.nikialeksey.nullfree.sources;
 
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;

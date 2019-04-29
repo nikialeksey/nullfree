@@ -1,5 +1,8 @@
 package com.nikialeksey.nullfree;
 
+import com.nikialeksey.nullfree.badge.ShieldsIoBadge;
+import com.nikialeksey.nullfree.sources.SimpleSources;
+import com.nikialeksey.nullfree.sources.java.JavaSourceFileFactory;
 import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Test;
