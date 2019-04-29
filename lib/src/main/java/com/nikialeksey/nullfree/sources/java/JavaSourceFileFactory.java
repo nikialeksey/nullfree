@@ -1,4 +1,7 @@
-package com.nikialeksey.nullfree;
+package com.nikialeksey.nullfree.sources.java;
+
+import com.nikialeksey.nullfree.sources.SourceFile;
+import com.nikialeksey.nullfree.sources.SourceFileFactory;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
