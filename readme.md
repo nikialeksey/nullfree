@@ -33,7 +33,7 @@ will be gone. **Let's stop using `null`!**
 Add the **Nullfree** plugin:
 ```groovy
 plugins {
-    id 'com.nikialeksey.nullfree' version '0.0.2'
+    id 'com.nikialeksey.nullfree' version '1.0.0'
 }
 ```
 
@@ -48,6 +48,6 @@ Add your nullfree badge to the project readme:
 ```
 
 ## Changelog
-
-`0.0.2` - first version of service and plugin, self checking nullfree badge
+`1.0.0` - Changed API of nullfree lib, null suppression ability 
+`0.0.2` - First version of service and plugin, self checking nullfree badge
 

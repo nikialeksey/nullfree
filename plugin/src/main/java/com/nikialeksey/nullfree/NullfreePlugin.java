@@ -1,5 +1,9 @@
 package com.nikialeksey.nullfree;
 
+import com.nikialeksey.nullfree.badge.ShieldsIoBadge;
+import com.nikialeksey.nullfree.nulls.ExcludeSuppressed;
+import com.nikialeksey.nullfree.sources.SimpleSources;
+import com.nikialeksey.nullfree.sources.java.JavaSourceFileFactory;
 import org.gradle.api.GradleScriptException;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -22,7 +26,9 @@ public class NullfreePlugin implements Plugin<Project> {
                             target.getRootDir(),
                             new JavaSourceFileFactory()
                         ),
-                        ShieldsIoBadge::new
+                        nulls -> new ShieldsIoBadge(
+                            new ExcludeSuppressed(nulls)
+                        )
                     ).badge().send(
                         new URL(
                             String.format(
