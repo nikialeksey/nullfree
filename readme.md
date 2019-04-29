@@ -55,7 +55,7 @@ class A {
     private final String a = null;
 }
 ```
-Method, field, variable suppresses are all accessible as well.
+Method, field, variable suppresses are all available as well.
 
 ## Changelog
 `1.0.0` - Changed API of nullfree lib, null suppression ability
