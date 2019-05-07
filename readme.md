@@ -42,6 +42,21 @@ Invoke it:
 ./gradlew nullfree
 ```
 
+### Maven
+Add the **Nullfree** plugin:
+```xml
+<plugin>
+    <groupId>com.nikialeksey</groupId>
+    <artifactId>nullfree-maven-plugin</artifactId>
+    <version>1.0.0</version>
+</plugin>
+```
+
+Invoke it:
+```bash
+mvn nullfree:nullfree
+```
+
 Add your nullfree badge to the project readme:
 ```markdown
 ![nullfree status](https://iwillfailyou.com/nullfree/<your nickname>/<your repo>)

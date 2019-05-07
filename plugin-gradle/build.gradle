@@ -27,6 +27,7 @@ version = ext.version
 dependencies {
     implementation gradleApi()
     implementation 'com.nikialeksey:nullfree:1.0.0'
+    implementation 'com.nikialeksey:goo:0.0.1'
     implementation 'org.eclipse.jgit:org.eclipse.jgit:5.2.0.201812061821-r'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

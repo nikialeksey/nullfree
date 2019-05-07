@@ -1,0 +1,51 @@
+<plugin>
+  <description>Nullfree maven plugin</description>
+  <groupId>com.nikialeksey</groupId>
+  <artifactId>nullfree-maven-plugin</artifactId>
+  <version>1.0.0</version>
+  <goalPrefix>nullfree</goalPrefix>
+  <inheritedByDefault>true</inheritedByDefault>
+  <mojos>
+    <mojo>
+      <goal>nullfree</goal>
+      <description>Nullfree check</description>
+      <requiresDirectInvocation>true</requiresDirectInvocation>
+      <requiresProject>true</requiresProject>
+      <requiresReports>false</requiresReports>
+      <aggregator>false</aggregator>
+      <requiresOnline>false</requiresOnline>
+      <inheritedByDefault>true</inheritedByDefault>
+      <phase>package</phase>
+      <implementation>com.nikialeksey.nullfree.NullfreeMojo</implementation>
+      <language>java</language>
+      <instantiationStrategy>per-lookup</instantiationStrategy>
+      <executionStrategy>once-per-session</executionStrategy>
+      <parameters>
+        <parameter>
+          <name>baseDir</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>false</editable>
+          <description>Base directory of the project.</description>
+        </parameter>
+      </parameters>
+      <configuration>
+        <baseDir implementation="java.io.File">
+          ${project.basedir}
+        </baseDir>
+      </configuration>
+    </mojo>
+  </mojos>
+  <dependencies>
+    <dependency>
+      <groupId>com.nikialeksey</groupId>
+      <artifactId>nullfree</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.nikialeksey</groupId>
+      <artifactId>goo</artifactId>
+      <version>0.0.1</version>
+    </dependency>
+  </dependencies>
+</plugin>
