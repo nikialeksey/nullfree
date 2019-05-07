@@ -4,4 +4,6 @@ public interface Null {
     String description();
 
     boolean isSuppressed();
+
+    boolean isInComparision();
 }

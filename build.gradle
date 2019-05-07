@@ -5,7 +5,6 @@ plugins {
 allprojects {
     ext {
         group = 'com.nikialeksey'
-        version = '1.0.0'
     }
     repositories {
         mavenCentral()
