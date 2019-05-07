@@ -1,0 +1,99 @@
+plugins {
+    id 'java-library'
+    id 'com.jfrog.bintray' version '1.8.4'
+}
+
+sourceCompatibility = 1.8
+group = ext.group
+version = ext.version
+
+dependencies {
+    implementation 'com.nikialeksey:nullfree:1.0.0'
+    implementation 'com.nikialeksey:goo:0.0.1'
+    implementation 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.6.0'
+    implementation 'org.apache.maven:maven-plugin-api:3.6.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+ext {
+    bintrayName = 'nullfree-maven-plugin'
+    artifact = 'nullfree-maven-plugin'
+    libraryName = 'nullfree-maven-plugin'
+
+    libraryDescription = 'Nullfree maven plugin'
+
+    bintrayRepo = 'java'
+    publishedGroupId = 'com.nikialeksey'
+
+    siteUrl = 'https://github.com/nikialeksey/nullfree'
+    gitUrl = 'https://github.com/nikialeksey/nullfree.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'nikialeksey'
+    developerName = 'Alexey Nikitin'
+    developerEmail = 'nikialeksey@gmail.com'
+    licenseName = 'MIT License'
+    licenseUrl = 'https://github.com/nikialeksey/nullfree/blob/master/LICENSE'
+    allLicenses = ['MIT']
+}
+if (project.rootProject.file('local.properties').exists()) {
+    apply plugin: 'maven'
+    apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+    apply plugin: 'maven-publish'
+    publishing {
+        publications {
+            nullfree_maven_plugin(MavenPublication) {
+                artifact(javadocJar)
+                artifact(sourcesJar)
+                artifact("$buildDir/libs/plugin-maven-${libraryVersion}.jar")
+
+                groupId publishedGroupId
+                artifactId 'nullfree-maven-plugin'
+                version = libraryVersion
+
+                pom {
+                    name = libraryName
+                    description = libraryDescription
+                    packaging = 'maven-plugin'
+
+                    url = siteUrl
+
+                    licenses {
+                        license {
+                            name = licenseName
+                            url = licenseUrl
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = developerId
+                            name = developerName
+                            email = developerEmail
+                        }
+                    }
+                    scm {
+                        connection = gitUrl
+                        developerConnection = gitUrl
+                        url = siteUrl
+                    }
+                }
+
+                pom.withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    def dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', 'com.nikialeksey')
+                    dependencyNode.appendNode('artifactId', 'nullfree')
+                    dependencyNode.appendNode('version', '1.0.0')
+
+                    dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', 'com.nikialeksey')
+                    dependencyNode.appendNode('artifactId', 'goo')
+                    dependencyNode.appendNode('version', '0.0.1')
+                }
+            }
+        }
+    }
+    bintray.publications = ['nullfree_maven_plugin']
+    bintray.configurations = []
+}

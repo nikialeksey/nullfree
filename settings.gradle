@@ -1,3 +1,4 @@
 rootProject.name = 'nullfree'
-include 'plugin'
 include 'lib'
+include 'plugin-gradle'
+include 'plugin-maven'

@@ -1,5 +1,8 @@
 package com.nikialeksey.nullfree;
 
+import com.nikialeksey.goo.Goo;
+import com.nikialeksey.goo.GooException;
+import com.nikialeksey.goo.Origin;
 import com.nikialeksey.nullfree.badge.ShieldsIoBadge;
 import com.nikialeksey.nullfree.nulls.ExcludeSuppressed;
 import com.nikialeksey.nullfree.sources.SimpleSources;
@@ -18,7 +21,7 @@ public class NullfreePlugin implements Plugin<Project> {
         target.task("nullfree").doLast(task ->
             {
                 try {
-                    final Origin origin = new Git(
+                    final Origin origin = new Goo(
                         new File(target.getRootDir(), ".git")
                     ).origin();
                     new SimpleNullfree(
@@ -38,6 +41,8 @@ public class NullfreePlugin implements Plugin<Project> {
                             )
                         )
                     );
+                } catch (final GooException e) {
+                    throw new GradleScriptException("Can not get the origin from git repo.", e);
                 } catch (final NullfreeException e) {
                     throw new GradleScriptException("Can not make the nullfree analysis.", e);
                 } catch (MalformedURLException e) {
