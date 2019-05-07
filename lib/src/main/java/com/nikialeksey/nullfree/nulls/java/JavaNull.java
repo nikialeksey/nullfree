@@ -3,6 +3,7 @@ package com.nikialeksey.nullfree.nulls.java;
 import com.github.javaparser.Range;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.expr.AnnotationExpr;
+import com.github.javaparser.ast.expr.BinaryExpr;
 import com.github.javaparser.ast.expr.NullLiteralExpr;
 import com.github.javaparser.ast.expr.StringLiteralExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
@@ -59,6 +60,23 @@ public class JavaNull implements Null {
             }
         });
 
+        return result.get(0);
+    }
+
+    @Override
+    public boolean isInComparision() {
+        final List<Boolean> result = Arrays.asList(false);
+        final Optional<Node> optParent = expr.getParentNode();
+        if (optParent.isPresent()) {
+            final Node parent = optParent.get();
+            final List<BinaryExpr> found = parent.findAll(BinaryExpr.class);
+            if (found.size() == 1) {
+                final BinaryExpr.Operator operator = found.get(0).getOperator();
+                if (operator == BinaryExpr.Operator.NOT_EQUALS || operator == BinaryExpr.Operator.EQUALS) {
+                    result.set(0, true);
+                }
+            }
+        }
         return result.get(0);
     }
 }

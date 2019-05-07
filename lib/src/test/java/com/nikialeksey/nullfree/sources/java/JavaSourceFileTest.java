@@ -15,7 +15,7 @@ import java.util.List;
 public class JavaSourceFileTest {
 
     @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+    public final TemporaryFolder folder = new TemporaryFolder();
 
     @Test
     public void oneNullLiteral() throws NullfreeException {
@@ -45,7 +45,7 @@ public class JavaSourceFileTest {
 
     @Test
     public void classSuppressedNull() throws Exception {
-        List<Null> nulls = new JavaSourceFile(
+        final List<Null> nulls = new JavaSourceFile(
             "@SuppressWarnings(\"nullfree\")\n",
             "class A {\n",
             "    private final String a = null;\n",
@@ -63,7 +63,7 @@ public class JavaSourceFileTest {
 
     @Test
     public void methodSuppressedNull() throws Exception {
-        List<Null> nulls = new JavaSourceFile(
+        final List<Null> nulls = new JavaSourceFile(
             "class A {\n",
             "    @SuppressWarnings(\"nullfree\")\n",
             "    void method() {\n",
@@ -83,7 +83,7 @@ public class JavaSourceFileTest {
 
     @Test
     public void assignSuppressedNull() throws Exception {
-        List<Null> nulls = new JavaSourceFile(
+        final List<Null> nulls = new JavaSourceFile(
             "class A {\n",
             "    void method() {\n",
             "        @SuppressWarnings(\"nullfree\")\n",
@@ -103,7 +103,7 @@ public class JavaSourceFileTest {
 
     @Test
     public void fieldSuppressedNull() throws Exception {
-        List<Null> nulls = new JavaSourceFile(
+        final List<Null> nulls = new JavaSourceFile(
             "class A {\n",
             "    @SuppressWarnings(\"nullfree\")\n",
             "    String name = null;\n",
@@ -121,7 +121,7 @@ public class JavaSourceFileTest {
 
     @Test
     public void fieldMultipleSuppressedNull() throws Exception {
-        List<Null> nulls = new JavaSourceFile(
+        final List<Null> nulls = new JavaSourceFile(
             "class A {\n",
             "    @SuppressWarnings(value = {\"nullfree\", \"something_else\"})\n",
             "    String name = null;\n",
@@ -134,6 +134,46 @@ public class JavaSourceFileTest {
         Assert.assertThat(
             nulls.get(0).isSuppressed(),
             IsEqual.equalTo(true)
+        );
+    }
+
+    @Test
+    public void nullInComparision() throws Exception {
+        final List<Null> nulls = new JavaSourceFile(
+            "class A {\n",
+            "    void a() {\n",
+            "        String name = \"Some name\";",
+            "        if (name != null) {}",
+            "    }\n",
+            "}\n"
+        ).nulls().asList();
+        Assert.assertThat(
+            nulls.size(),
+            IsEqual.equalTo(1)
+        );
+        Assert.assertThat(
+            nulls.get(0).isInComparision(),
+            IsEqual.equalTo(true)
+        );
+    }
+
+    @Test
+    public void nullNotInComparision() throws Exception {
+        final List<Null> nulls = new JavaSourceFile(
+            "class A {\n",
+            "    void a() {\n",
+            "        String name = \"Some name\";",
+            "        if (name.equals(null)) {}",
+            "    }\n",
+            "}\n"
+        ).nulls().asList();
+        Assert.assertThat(
+            nulls.size(),
+            IsEqual.equalTo(1)
+        );
+        Assert.assertThat(
+            nulls.get(0).isInComparision(),
+            IsEqual.equalTo(false)
         );
     }
 }
