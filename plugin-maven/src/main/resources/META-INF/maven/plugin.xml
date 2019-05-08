@@ -2,7 +2,7 @@
   <description>Nullfree maven plugin</description>
   <groupId>com.nikialeksey</groupId>
   <artifactId>nullfree-maven-plugin</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <goalPrefix>nullfree</goalPrefix>
   <inheritedByDefault>true</inheritedByDefault>
   <mojos>
@@ -28,11 +28,21 @@
           <editable>false</editable>
           <description>Base directory of the project.</description>
         </parameter>
+        <parameter>
+          <name>skipComparisions</name>
+          <type>java.lang.Boolean</type>
+          <required>false</required>
+          <editable>false</editable>
+          <description>Skip or not nulls in comparision expressions.</description>
+        </parameter>
       </parameters>
       <configuration>
         <baseDir implementation="java.io.File">
           ${project.basedir}
         </baseDir>
+        <skipComparisions implementation="java.lang.Boolean">
+          false
+        </skipComparisions>
       </configuration>
     </mojo>
   </mojos>
@@ -40,7 +50,7 @@
     <dependency>
       <groupId>com.nikialeksey</groupId>
       <artifactId>nullfree</artifactId>
-      <version>1.0.0</version>
+      <version>1.1.0</version>
     </dependency>
     <dependency>
       <groupId>com.nikialeksey</groupId>

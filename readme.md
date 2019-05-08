@@ -48,7 +48,7 @@ Add the **Nullfree** plugin:
 <plugin>
     <groupId>com.nikialeksey</groupId>
     <artifactId>nullfree-maven-plugin</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </plugin>
 ```
 
@@ -87,6 +87,18 @@ plugin for skipping such nulls:
 nullfree {
     skipComparisions = true
 }
+```
+
+### Maven plugin
+```xml
+<plugin>
+    <groupId>com.nikialeksey</groupId>
+    <artifactId>nullfree-maven-plugin</artifactId>
+    <version>1.1.0</version>
+    <configuration>
+        <skipComparisions>true</skipComparisions>
+    </configuration>
+</plugin>
 ```
 
 ## Changelog
