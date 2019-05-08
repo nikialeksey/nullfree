@@ -22,13 +22,11 @@ gradlePlugin {
 
 sourceCompatibility = 1.8
 group = ext.group
-version = '1.0.0'
+version = '1.1.0'
 
 dependencies {
     implementation gradleApi()
-    // @todo #10:30m gradle-plugin: support nulls in comparisions
-    implementation 'com.nikialeksey:nullfree:1.0.0'
+    implementation 'com.nikialeksey:nullfree:1.1.0'
     implementation 'com.nikialeksey:goo:0.0.1'
-    implementation 'org.eclipse.jgit:org.eclipse.jgit:5.2.0.201812061821-r'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
