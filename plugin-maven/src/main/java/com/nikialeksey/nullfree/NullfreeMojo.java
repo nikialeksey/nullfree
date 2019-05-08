@@ -4,7 +4,9 @@ import com.nikialeksey.goo.Goo;
 import com.nikialeksey.goo.GooException;
 import com.nikialeksey.goo.Origin;
 import com.nikialeksey.nullfree.badge.ShieldsIoBadge;
+import com.nikialeksey.nullfree.nulls.ExcludeComparisions;
 import com.nikialeksey.nullfree.nulls.ExcludeSuppressed;
+import com.nikialeksey.nullfree.nulls.Nulls;
 import com.nikialeksey.nullfree.sources.SimpleSources;
 import com.nikialeksey.nullfree.sources.java.JavaSourceFileFactory;
 import org.apache.maven.plugin.AbstractMojo;
@@ -21,6 +23,8 @@ public class NullfreeMojo extends AbstractMojo {
 
     @Parameter(readonly = true, defaultValue = "${project.basedir}")
     private File baseDir;
+    @Parameter(readonly = true, defaultValue = "false")
+    private boolean skipComparisions;
 
     @Override
     public void execute() throws MojoExecutionException {
@@ -33,9 +37,19 @@ public class NullfreeMojo extends AbstractMojo {
                     baseDir,
                     new JavaSourceFileFactory()
                 ),
-                nulls -> new ShieldsIoBadge(
-                    new ExcludeSuppressed(nulls)
-                )
+                nulls -> {
+                    final Nulls wrapped;
+                    if (skipComparisions) {
+                        wrapped = new ExcludeComparisions(
+                            new ExcludeSuppressed(nulls)
+                        );
+                    } else {
+                        wrapped = new ExcludeSuppressed(nulls);
+                    }
+                    return new ShieldsIoBadge(
+                        wrapped
+                    );
+                }
             ).badge().send(
                 new URL(
                     String.format(
