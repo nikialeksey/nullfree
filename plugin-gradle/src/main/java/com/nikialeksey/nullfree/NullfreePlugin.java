@@ -4,7 +4,9 @@ import com.nikialeksey.goo.Goo;
 import com.nikialeksey.goo.GooException;
 import com.nikialeksey.goo.Origin;
 import com.nikialeksey.nullfree.badge.ShieldsIoBadge;
+import com.nikialeksey.nullfree.nulls.ExcludeComparisions;
 import com.nikialeksey.nullfree.nulls.ExcludeSuppressed;
+import com.nikialeksey.nullfree.nulls.Nulls;
 import com.nikialeksey.nullfree.sources.SimpleSources;
 import com.nikialeksey.nullfree.sources.java.JavaSourceFileFactory;
 import org.gradle.api.GradleScriptException;
@@ -18,8 +20,10 @@ import java.net.URL;
 public class NullfreePlugin implements Plugin<Project> {
     @Override
     public void apply(final Project target) {
+        target.getExtensions().create("nullfree", NullfreeExtension.class);
         target.task("nullfree").doLast(task ->
             {
+                final NullfreeExtension settings = target.getExtensions().getByType(NullfreeExtension.class);
                 try {
                     final Origin origin = new Goo(
                         new File(target.getRootDir(), ".git")
@@ -29,9 +33,19 @@ public class NullfreePlugin implements Plugin<Project> {
                             target.getRootDir(),
                             new JavaSourceFileFactory()
                         ),
-                        nulls -> new ShieldsIoBadge(
-                            new ExcludeSuppressed(nulls)
-                        )
+                        nulls -> {
+                            final Nulls wrapped;
+                            if (settings.getSkipComparisions()) {
+                                wrapped = new ExcludeComparisions(
+                                    new ExcludeSuppressed(nulls)
+                                );
+                            } else {
+                                wrapped = new ExcludeSuppressed(nulls);
+                            }
+                            return new ShieldsIoBadge(
+                                wrapped
+                            );
+                        }
                     ).badge().send(
                         new URL(
                             String.format(

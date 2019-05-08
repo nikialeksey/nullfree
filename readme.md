@@ -33,7 +33,7 @@ will be gone. **Let's stop using `null`!**
 Add the **Nullfree** plugin:
 ```groovy
 plugins {
-    id 'com.nikialeksey.nullfree' version '1.0.0'
+    id 'com.nikialeksey.nullfree' version '1.1.0'
 }
 ```
 
@@ -62,7 +62,7 @@ Add your nullfree badge to the project readme:
 ![nullfree status](https://iwillfailyou.com/nullfree/<your nickname>/<your repo>)
 ```
 
-### Suppress
+## Suppress
 You can suppress any null by `@SuppressWarnings("nullfree")` annotation:
 ```java
 @SuppressWarnings("nullfree")
@@ -72,7 +72,26 @@ class A {
 ```
 Method, field, variable suppresses are all available as well.
 
+## Other ways to ignoring nulls
+
+Sometimes (usually in integrations with foreign libraries) it have to use null in comparisions:
+```java
+if (some != null) { ... }
+if (other == null) { ... }
+```
+It's ok, if you use it, `NullPointerException` does not throw in this place, so you can add option to **nullfree**
+plugin for skipping such nulls: 
+
+### Gradle plugin
+```groovy
+nullfree {
+    skipComparisions = true
+}
+```
+
 ## Changelog
+`1.1.0` - Skip nulls in comparisions expressions ability
+
 `1.0.0` - Changed API of nullfree lib, null suppression ability
 
 `0.0.2` - First version of service and plugin, self checking nullfree badge
