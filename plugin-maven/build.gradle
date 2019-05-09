@@ -7,6 +7,7 @@ sourceCompatibility = 1.8
 group = ext.group
 
 dependencies {
+    // @todo #2:30m Add crashing maven when null
     implementation 'com.nikialeksey:nullfree:1.1.0'
     implementation 'com.nikialeksey:goo:0.0.1'
     implementation 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.6.0'

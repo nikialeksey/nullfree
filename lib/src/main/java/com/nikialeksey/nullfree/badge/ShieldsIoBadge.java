@@ -1,6 +1,7 @@
 package com.nikialeksey.nullfree.badge;
 
 import com.nikialeksey.nullfree.NullfreeException;
+import com.nikialeksey.nullfree.nulls.Null;
 import com.nikialeksey.nullfree.nulls.Nulls;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -14,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collections;
+import java.util.List;
 
 public class ShieldsIoBadge implements Badge {
 
@@ -69,6 +71,25 @@ public class ShieldsIoBadge implements Badge {
             throw new NullfreeException("Nullfree service error when sending badge info.", e);
         } catch (URISyntaxException | IOException e) {
             throw new NullfreeException("Can not send the badge request.", e);
+        }
+    }
+
+    @Override
+    public void failIfRed() throws NullfreeException {
+        final List<Null> nulls = this.nulls.asList();
+        if (!nulls.isEmpty()) {
+            final StringBuilder message = new StringBuilder();
+            for (final Null aNull : nulls) {
+                message.append("Found:\n");
+                message.append(aNull.description());
+                message.append('\n');
+            }
+            throw new NullfreeException(
+                String.format(
+                    "Found nulls:\n%s",
+                    message.toString()
+                )
+            );
         }
     }
 }
