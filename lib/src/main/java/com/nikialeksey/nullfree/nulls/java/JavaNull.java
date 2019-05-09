@@ -7,6 +7,7 @@ import com.github.javaparser.ast.expr.BinaryExpr;
 import com.github.javaparser.ast.expr.NullLiteralExpr;
 import com.github.javaparser.ast.expr.StringLiteralExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
+import com.nikialeksey.javaparser.SimplePath;
 import com.nikialeksey.nullfree.nulls.Null;
 
 import java.util.Arrays;
@@ -23,16 +24,18 @@ public class JavaNull implements Null {
 
     @Override
     public String description() {
+        final StringBuilder description = new StringBuilder();
+        description.append("Path: ");
+        description.append(new SimplePath(expr).asString());
+        description.append('\n');
+
         final Optional<Range> range = expr.getRange();
-        final String description;
         if (range.isPresent()) {
-            description = range.get().toString();
-        } else if (expr.getParentNode().isPresent()) {
-            description = expr.getParentNode().get().toString();
-        } else {
-            description = expr.findRootNode().toString();
+            description.append("Range: ");
+            description.append(range.get().toString());
+            description.append('\n');
         }
-        return description;
+        return description.toString();
     }
 
     @Override

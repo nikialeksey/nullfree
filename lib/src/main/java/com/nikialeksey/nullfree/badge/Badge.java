@@ -8,4 +8,6 @@ public interface Badge {
     URL asUrl() throws NullfreeException;
 
     void send(URL url) throws NullfreeException;
+
+    void failIfRed() throws NullfreeException;
 }
