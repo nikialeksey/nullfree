@@ -27,7 +27,7 @@ ext {
     siteUrl = 'https://github.com/nikialeksey/nullfree'
     gitUrl = 'https://github.com/nikialeksey/nullfree.git'
 
-    libraryVersion = '1.2.0'
+    libraryVersion = '1.2.1'
 
     developerId = 'nikialeksey'
     developerName = 'Alexey Nikitin'
@@ -83,7 +83,7 @@ if (project.rootProject.file('local.properties').exists()) {
                     def dependencyNode = dependenciesNode.appendNode('dependency')
                     dependencyNode.appendNode('groupId', 'com.nikialeksey')
                     dependencyNode.appendNode('artifactId', 'nullfree')
-                    dependencyNode.appendNode('version', '1.1.0')
+                    dependencyNode.appendNode('version', '1.2.0')
 
                     dependencyNode = dependenciesNode.appendNode('dependency')
                     dependencyNode.appendNode('groupId', 'com.nikialeksey')
