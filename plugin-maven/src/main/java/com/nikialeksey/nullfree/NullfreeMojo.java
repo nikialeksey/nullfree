@@ -3,6 +3,7 @@ package com.nikialeksey.nullfree;
 import com.nikialeksey.goo.Goo;
 import com.nikialeksey.goo.GooException;
 import com.nikialeksey.goo.Origin;
+import com.nikialeksey.nullfree.badge.Badge;
 import com.nikialeksey.nullfree.badge.ShieldsIoBadge;
 import com.nikialeksey.nullfree.nulls.ExcludeComparisions;
 import com.nikialeksey.nullfree.nulls.ExcludeSuppressed;
@@ -32,7 +33,7 @@ public class NullfreeMojo extends AbstractMojo {
             final Origin origin = new Goo(
                 new File(baseDir, ".git")
             ).origin();
-            new SimpleNullfree(
+            final Badge badge = new SimpleNullfree(
                 new SimpleSources(
                     baseDir,
                     new JavaSourceFileFactory()
@@ -50,7 +51,8 @@ public class NullfreeMojo extends AbstractMojo {
                         wrapped
                     );
                 }
-            ).badge().send(
+            ).badge();
+            badge.send(
                 new URL(
                     String.format(
                         "https://iwillfailyou.com/nullfree/%s/%s",
@@ -59,6 +61,7 @@ public class NullfreeMojo extends AbstractMojo {
                     )
                 )
             );
+            badge.failIfRed();
         } catch (final GooException e) {
             throw new MojoExecutionException("Can not get the origin from git repo.", e);
         } catch (final NullfreeException e) {

@@ -7,8 +7,7 @@ sourceCompatibility = 1.8
 group = ext.group
 
 dependencies {
-    // @todo #2:30m Add crashing maven when null
-    implementation 'com.nikialeksey:nullfree:1.1.0'
+    implementation 'com.nikialeksey:nullfree:1.2.0'
     implementation 'com.nikialeksey:goo:0.0.1'
     implementation 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.6.0'
     implementation 'org.apache.maven:maven-plugin-api:3.6.0'
@@ -28,7 +27,7 @@ ext {
     siteUrl = 'https://github.com/nikialeksey/nullfree'
     gitUrl = 'https://github.com/nikialeksey/nullfree.git'
 
-    libraryVersion = '1.1.0'
+    libraryVersion = '1.2.0'
 
     developerId = 'nikialeksey'
     developerName = 'Alexey Nikitin'

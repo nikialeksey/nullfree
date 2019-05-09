@@ -49,7 +49,7 @@ Add the **Nullfree** plugin:
 <plugin>
     <groupId>com.nikialeksey</groupId>
     <artifactId>nullfree-maven-plugin</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </plugin>
 ```
 
@@ -95,7 +95,7 @@ nullfree {
 <plugin>
     <groupId>com.nikialeksey</groupId>
     <artifactId>nullfree-maven-plugin</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <configuration>
         <skipComparisions>true</skipComparisions>
     </configuration>
