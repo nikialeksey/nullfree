@@ -3,6 +3,7 @@ package com.nikialeksey.nullfree;
 import com.nikialeksey.goo.Goo;
 import com.nikialeksey.goo.GooException;
 import com.nikialeksey.goo.Origin;
+import com.nikialeksey.nullfree.badge.Badge;
 import com.nikialeksey.nullfree.badge.ShieldsIoBadge;
 import com.nikialeksey.nullfree.nulls.ExcludeComparisions;
 import com.nikialeksey.nullfree.nulls.ExcludeSuppressed;
@@ -28,7 +29,7 @@ public class NullfreePlugin implements Plugin<Project> {
                     final Origin origin = new Goo(
                         new File(target.getRootDir(), ".git")
                     ).origin();
-                    new SimpleNullfree(
+                    final Badge badge = new SimpleNullfree(
                         new SimpleSources(
                             target.getRootDir(),
                             new JavaSourceFileFactory()
@@ -46,7 +47,8 @@ public class NullfreePlugin implements Plugin<Project> {
                                 wrapped
                             );
                         }
-                    ).badge().send(
+                    ).badge();
+                    badge.send(
                         new URL(
                             String.format(
                                 "https://iwillfailyou.com/nullfree/%s/%s",
@@ -55,6 +57,7 @@ public class NullfreePlugin implements Plugin<Project> {
                             )
                         )
                     );
+                    badge.failIfRed();
                 } catch (final GooException e) {
                     throw new GradleScriptException("Can not get the origin from git repo.", e);
                 } catch (final NullfreeException e) {

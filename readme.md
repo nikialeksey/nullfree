@@ -16,7 +16,8 @@ It is the service for analysing your project contains or not the `null` literal.
 With **Nullfree** you can add a badge to your project who looks like 
 ![without nulls](https://img.shields.io/badge/nullfree-approved-green.svg), if your project
 does not contain `null`, else if project contains at least one `null` it will looks like
-![with nulls](https://img.shields.io/badge/nullfree-declined-red.svg).
+![with nulls](https://img.shields.io/badge/nullfree-declined-red.svg). There's even more, **Nullfree** will fail project
+build, if it contains a null.
 
 ## For what?
 
@@ -33,7 +34,7 @@ will be gone. **Let's stop using `null`!**
 Add the **Nullfree** plugin:
 ```groovy
 plugins {
-    id 'com.nikialeksey.nullfree' version '1.1.0'
+    id 'com.nikialeksey.nullfree' version '1.2.0'
 }
 ```
 
@@ -79,7 +80,7 @@ Sometimes (usually in integrations with foreign libraries) it have to use null i
 if (some != null) { ... }
 if (other == null) { ... }
 ```
-It's ok, if you use it, `NullPointerException` does not throw in this place, so you can add option to **nullfree**
+It's ok, if you use it, `NullPointerException` does not throw in this place, so you can add option to **Nullfree**
 plugin for skipping such nulls: 
 
 ### Gradle plugin
@@ -102,6 +103,8 @@ nullfree {
 ```
 
 ## Changelog
+`1.2.0` - Fail build if it contains a null
+
 `1.1.0` - Skip nulls in comparisions expressions ability
 
 `1.0.0` - Changed API of nullfree lib, null suppression ability
