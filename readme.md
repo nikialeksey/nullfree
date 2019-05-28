@@ -1,6 +1,6 @@
 # Nullfree
 
-![Elegant Objects Respected Here](http://www.elegantobjects.org/badge.svg)
+![Elegant Objects Respected Here](https://www.elegantobjects.org/badge.svg)
 
 ![nullfree status](https://iwillfailyou.com/nullfree/nikialeksey/nullfree)
 
