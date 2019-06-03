@@ -12,7 +12,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/nikialeksey/nullfree/blob/master/LICENSE)
 
-![logo](https://raw.githubusercontent.com/nikialeksey/nullfree/master/assets/github-logo.yml)
+![logo](https://raw.githubusercontent.com/nikialeksey/nullfree/master/assets/github-logo.png)
 
 ## What is it?
 
