@@ -4,11 +4,15 @@
 
 ![nullfree status](https://iwillfailyou.com/nullfree/nikialeksey/nullfree)
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.nikialeksey/nullfree/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.nikialeksey/nullfree)
+[![Lib version](https://img.shields.io/maven-central/v/com.nikialeksey/nullfree.svg?label=lib)](https://maven-badges.herokuapp.com/maven-central/com.nikialeksey/nullfree)
+[![Gradle plugin version](https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/com/nikialeksey/nullfree/com.nikialeksey.nullfree.gradle.plugin/maven-metadata.xml.svg?label=plugin-gradle)](https://plugins.gradle.org/plugin/com.nikialeksey.nullfree)
+[![Maven plugin version](https://img.shields.io/bintray/v/nikialeksey/java/nullfree-maven-plugin.svg?label=plugin-maven)](https://bintray.com/nikialeksey/java/nullfree-maven-plugin/_latestVersion)
 [![Build Status](https://travis-ci.org/nikialeksey/nullfree.svg?branch=master)](https://travis-ci.org/nikialeksey/nullfree)
 [![codecov](https://codecov.io/gh/nikialeksey/nullfree/branch/master/graph/badge.svg)](https://codecov.io/gh/nikialeksey/nullfree)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/nikialeksey/nullfree/blob/master/LICENSE)
+
+![logo](https://raw.githubusercontent.com/nikialeksey/nullfree/master/assets/github-logo.yml)
 
 ## What is it?
 
