@@ -3,6 +3,7 @@ package com.nikialeksey.nullfree.badge;
 import com.nikialeksey.nullfree.NullfreeException;
 import com.nikialeksey.nullfree.nulls.Null;
 import com.nikialeksey.nullfree.nulls.Nulls;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -11,46 +12,17 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ShieldsIoBadge implements Badge {
+public class SimpleBadge implements Badge {
 
     private final Nulls nulls;
 
-    public ShieldsIoBadge(final Nulls nulls) {
+    public SimpleBadge(final Nulls nulls) {
         this.nulls = nulls;
-    }
-
-    @Override
-    public URL asUrl() throws NullfreeException {
-        final int nullCount = nulls.asList().size();
-        final String message;
-        if (nullCount == 0) {
-            message = "approved";
-        } else {
-            message = "declined";
-        }
-        final String color;
-        if (nullCount == 0) {
-            color = "green";
-        } else {
-            color = "red";
-        }
-        try {
-            return new URL(
-                String.format(
-                    "https://img.shields.io/badge/nullfree-%s-%s.svg",
-                    message,
-                    color
-                )
-            );
-        } catch (MalformedURLException e) {
-            throw new NullfreeException("Can not generate the URL for shields.io badge", e);
-        }
     }
 
     @Override
@@ -58,12 +30,14 @@ public class ShieldsIoBadge implements Badge {
         try (
             final CloseableHttpClient httpClient = HttpClients.createDefault()
         ) {
+            final List<NameValuePair> form = new ArrayList<>();
+            for (final Null aNull : nulls.asList()) {
+                form.add(new BasicNameValuePair("null", aNull.description()));
+            }
             final HttpPost saveBadgeInfo = new HttpPost(url.toURI());
             saveBadgeInfo.setEntity(
                 new UrlEncodedFormEntity(
-                    Collections.singletonList(
-                        new BasicNameValuePair("badgeUrl", asUrl().toString())
-                    )
+                    form
                 )
             );
             httpClient.execute(saveBadgeInfo).close();

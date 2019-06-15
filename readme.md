@@ -107,6 +107,8 @@ nullfree {
 ```
 
 ## Changelog
+`1.3.0` - Send null descriptions to the API instead of badge url
+
 `1.2.0` - Fail build if it contains a null
 
 `1.1.0` - Skip nulls in comparisions expressions ability
