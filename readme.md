@@ -38,7 +38,7 @@ will be gone. **Let's stop using `null`!**
 Add the **Nullfree** plugin:
 ```groovy
 plugins {
-    id 'com.nikialeksey.nullfree' version '1.3.0'
+    id 'com.nikialeksey.nullfree' version '1.4.0'
 }
 ```
 
@@ -53,7 +53,7 @@ Add the **Nullfree** plugin:
 <plugin>
     <groupId>com.nikialeksey</groupId>
     <artifactId>nullfree-maven-plugin</artifactId>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
 </plugin>
 ```
 
@@ -99,9 +99,31 @@ nullfree {
 <plugin>
     <groupId>com.nikialeksey</groupId>
     <artifactId>nullfree-maven-plugin</artifactId>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
     <configuration>
         <skipComparisions>true</skipComparisions>
+    </configuration>
+</plugin>
+```
+
+## Nulls threshold
+You can the nulls threshold to allow project has a few nulls, but there would be only few.
+
+### Gradle plugin
+```groovy
+nullfree {
+    threshold = 5
+}
+```
+
+### Maven plugin
+```xml
+<plugin>
+    <groupId>com.nikialeksey</groupId>
+    <artifactId>nullfree-maven-plugin</artifactId>
+    <version>1.4.0</version>
+    <configuration>
+        <threshold>5</threshold>
     </configuration>
 </plugin>
 ```

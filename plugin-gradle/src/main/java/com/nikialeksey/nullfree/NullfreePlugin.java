@@ -44,7 +44,8 @@ public class NullfreePlugin implements Plugin<Project> {
                                 wrapped = new ExcludeSuppressed(nulls);
                             }
                             return new SimpleBadge(
-                                wrapped
+                                wrapped,
+                                settings.getThreshold()
                             );
                         }
                     ).badge();
