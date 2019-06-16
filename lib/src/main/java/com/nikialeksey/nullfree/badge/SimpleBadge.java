@@ -20,9 +20,15 @@ import java.util.List;
 public class SimpleBadge implements Badge {
 
     private final Nulls nulls;
+    private final int threshold;
 
     public SimpleBadge(final Nulls nulls) {
+        this(nulls, 0);
+    }
+
+    public SimpleBadge(final Nulls nulls, final int threshold) {
         this.nulls = nulls;
+        this.threshold = threshold;
     }
 
     @Override
@@ -34,6 +40,7 @@ public class SimpleBadge implements Badge {
             for (final Null aNull : nulls.asList()) {
                 form.add(new BasicNameValuePair("null", aNull.description()));
             }
+            form.add(new BasicNameValuePair("threshold", String.valueOf(threshold)));
             final HttpPost saveBadgeInfo = new HttpPost(url.toURI());
             saveBadgeInfo.setEntity(
                 new UrlEncodedFormEntity(
@@ -51,7 +58,7 @@ public class SimpleBadge implements Badge {
     @Override
     public void failIfRed() throws NullfreeException {
         final List<Null> nulls = this.nulls.asList();
-        if (!nulls.isEmpty()) {
+        if (nulls.size() > threshold) {
             final StringBuilder message = new StringBuilder();
             for (final Null aNull : nulls) {
                 message.append("Found:\n");
