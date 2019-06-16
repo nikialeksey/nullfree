@@ -2,7 +2,7 @@
   <description>Nullfree maven plugin</description>
   <groupId>com.nikialeksey</groupId>
   <artifactId>nullfree-maven-plugin</artifactId>
-  <version>1.3.0</version>
+  <version>1.4.0</version>
   <goalPrefix>nullfree</goalPrefix>
   <inheritedByDefault>true</inheritedByDefault>
   <mojos>
@@ -35,6 +35,13 @@
           <editable>false</editable>
           <description>Skip or not nulls in comparision expressions.</description>
         </parameter>
+        <parameter>
+          <name>threshold</name>
+          <type>java.lang.Integer</type>
+          <required>false</required>
+          <editable>false</editable>
+          <description>Nulls threshold.</description>
+        </parameter>
       </parameters>
       <configuration>
         <baseDir implementation="java.io.File">
@@ -43,6 +50,9 @@
         <skipComparisions implementation="java.lang.Boolean">
           false
         </skipComparisions>
+        <threshold implementation="java.lang.Integer">
+          0
+        </threshold>
       </configuration>
     </mojo>
   </mojos>
@@ -50,7 +60,7 @@
     <dependency>
       <groupId>com.nikialeksey</groupId>
       <artifactId>nullfree</artifactId>
-      <version>1.3.0</version>
+      <version>1.4.0</version>
     </dependency>
     <dependency>
       <groupId>com.nikialeksey</groupId>

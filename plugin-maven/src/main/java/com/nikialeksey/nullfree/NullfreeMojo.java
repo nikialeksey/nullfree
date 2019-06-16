@@ -26,6 +26,8 @@ public class NullfreeMojo extends AbstractMojo {
     private File baseDir;
     @Parameter(readonly = true, defaultValue = "false")
     private boolean skipComparisions;
+    @Parameter(readonly = true, defaultValue = "0")
+    private int threshold;
 
     @Override
     public void execute() throws MojoExecutionException {
@@ -48,7 +50,8 @@ public class NullfreeMojo extends AbstractMojo {
                         wrapped = new ExcludeSuppressed(nulls);
                     }
                     return new SimpleBadge(
-                        wrapped
+                        wrapped,
+                        threshold
                     );
                 }
             ).badge();
