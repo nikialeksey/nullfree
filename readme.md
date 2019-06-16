@@ -107,6 +107,8 @@ nullfree {
 ```
 
 ## Changelog
+`1.4.0` - Threshold for nulls count
+
 `1.3.0` - Send null descriptions to the API instead of badge url
 
 `1.2.0` - Fail build if it contains a null
