@@ -4,7 +4,7 @@ import com.nikialeksey.goo.Goo;
 import com.nikialeksey.goo.GooException;
 import com.nikialeksey.goo.Origin;
 import com.nikialeksey.nullfree.badge.Badge;
-import com.nikialeksey.nullfree.badge.ShieldsIoBadge;
+import com.nikialeksey.nullfree.badge.SimpleBadge;
 import com.nikialeksey.nullfree.nulls.ExcludeComparisions;
 import com.nikialeksey.nullfree.nulls.ExcludeSuppressed;
 import com.nikialeksey.nullfree.nulls.Nulls;
@@ -47,7 +47,7 @@ public class NullfreeMojo extends AbstractMojo {
                     } else {
                         wrapped = new ExcludeSuppressed(nulls);
                     }
-                    return new ShieldsIoBadge(
+                    return new SimpleBadge(
                         wrapped
                     );
                 }

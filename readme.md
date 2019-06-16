@@ -38,7 +38,7 @@ will be gone. **Let's stop using `null`!**
 Add the **Nullfree** plugin:
 ```groovy
 plugins {
-    id 'com.nikialeksey.nullfree' version '1.2.0'
+    id 'com.nikialeksey.nullfree' version '1.3.0'
 }
 ```
 
@@ -53,7 +53,7 @@ Add the **Nullfree** plugin:
 <plugin>
     <groupId>com.nikialeksey</groupId>
     <artifactId>nullfree-maven-plugin</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 </plugin>
 ```
 
@@ -99,7 +99,7 @@ nullfree {
 <plugin>
     <groupId>com.nikialeksey</groupId>
     <artifactId>nullfree-maven-plugin</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
     <configuration>
         <skipComparisions>true</skipComparisions>
     </configuration>
