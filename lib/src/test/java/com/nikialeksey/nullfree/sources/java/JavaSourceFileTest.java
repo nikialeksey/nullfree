@@ -3,6 +3,7 @@ package com.nikialeksey.nullfree.sources.java;
 import com.nikialeksey.nullfree.NullfreeException;
 import com.nikialeksey.nullfree.nulls.Null;
 import org.hamcrest.core.IsEqual;
+import org.hamcrest.core.StringContains;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -176,4 +177,38 @@ public class JavaSourceFileTest {
             IsEqual.equalTo(false)
         );
     }
+
+    @Test
+    public void nullsWhenParsingError() throws Exception {
+        try {
+            new JavaSourceFile(
+                "class A {\n",
+                "    void int a() {\n",
+                "    }\n",
+                "}\n"
+            ).nulls().asList();
+        } catch (final NullfreeException e) {
+            // green
+        } catch (Throwable e) {
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void nullsWhenParsingErrorInFile() throws Exception {
+        final File source = folder.newFile("Main.java");
+        try (final PrintWriter writer = new PrintWriter(source)) {
+            writer.println("class A {");
+            writer.println("    private public final String a = null;");
+            writer.println("}");
+        }
+        try {
+            new JavaSourceFile(source).nulls().asList();
+        } catch (final NullfreeException e) {
+            Assert.assertThat(e.getMessage(), StringContains.containsString("Main.java"));
+        } catch (Throwable e) {
+            Assert.fail();
+        }
+    }
+
 }
