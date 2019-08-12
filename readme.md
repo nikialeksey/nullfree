@@ -129,6 +129,8 @@ nullfree {
 ```
 
 ## Changelog
+`1.4.1` - Parsing error tips in exception message
+
 `1.4.0` - Threshold for nulls count
 
 `1.3.0` - Send null descriptions to the API instead of badge url

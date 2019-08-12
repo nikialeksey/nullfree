@@ -35,7 +35,7 @@ ext {
     siteUrl = 'https://github.com/nikialeksey/nullfree'
     gitUrl = 'https://github.com/nikialeksey/nullfree.git'
 
-    libraryVersion = '1.4.0'
+    libraryVersion = '1.4.1'
 
     developerId = 'nikialeksey'
     developerName = 'Alexey Nikitin'
