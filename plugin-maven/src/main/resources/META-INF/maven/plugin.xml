@@ -2,7 +2,7 @@
   <description>Nullfree maven plugin</description>
   <groupId>com.nikialeksey</groupId>
   <artifactId>nullfree-maven-plugin</artifactId>
-  <version>1.4.0</version>
+  <version>1.4.1</version>
   <goalPrefix>nullfree</goalPrefix>
   <inheritedByDefault>true</inheritedByDefault>
   <mojos>
@@ -60,7 +60,7 @@
     <dependency>
       <groupId>com.nikialeksey</groupId>
       <artifactId>nullfree</artifactId>
-      <version>1.4.0</version>
+      <version>1.4.1</version>
     </dependency>
     <dependency>
       <groupId>com.nikialeksey</groupId>
