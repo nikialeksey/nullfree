@@ -211,4 +211,40 @@ public class JavaSourceFileTest {
         }
     }
 
+    @Test
+    public void nullsInPrivateInterfaceMethod() throws Exception {
+        Assert.assertThat(
+            new JavaSourceFile(
+                "interface A {\n",
+                "    private void a() {\n",
+                "        String a = null;\n",
+                "    }\n",
+                "}\n"
+            ).nulls().asList().size(),
+            IsEqual.equalTo(1)
+        );
+    }
+
+    @Test
+    public void nullsInJava12SyntaxFile() throws Exception {
+        Assert.assertThat(
+            new JavaSourceFile(
+                "public class Test {\n",
+                "    enum Day {\n",
+                "        MON, TUE, WED, THUR, FRI, SAT, SUN\n",
+                "    };\n",
+                "    @SuppressWarnings(\"preview\")\n",
+                "    public String getDay_1 (Day today) {\n",
+                "        String day = switch(today) {\n",
+                "            case MON, TUE, WED, THUR, FRI -> \"Weekday\";\n",
+                "            case SAT, SUN -> \"Weekend\";\n",
+                "        };\n",
+                "        return day;\n",
+                "    }\n",
+                "}"
+            ).nulls().asList().size(),
+            IsEqual.equalTo(0)
+        );
+    }
+
 }
