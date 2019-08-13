@@ -17,7 +17,7 @@
 ## What is it?
 
 It is the service for analysing your project contains or not the `null` literal.
-With **Nullfree** you can add a badge to your project who looks like 
+With **Nullfree** you can add a badge to your project which looks like 
 ![without nulls](https://img.shields.io/badge/nullfree-approved-green.svg), if your project
 does not contain `null`, else if project contains at least one `null` it will looks like
 ![with nulls](https://img.shields.io/badge/nullfree-declined-red.svg). There's even more, **Nullfree** will fail project
@@ -129,6 +129,8 @@ nullfree {
 ```
 
 ## Changelog
+`1.4.2` - Support all (from 1 to 12) java version syntax when parsing nulls
+
 `1.4.1` - Parsing error tips in exception message
 
 `1.4.0` - Threshold for nulls count
