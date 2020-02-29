@@ -8,7 +8,7 @@ group = ext.group
 
 dependencies {
     implementation 'com.nikialeksey:nullfree:1.4.2'
-    implementation 'com.nikialeksey:goo:0.0.1'
+    implementation 'com.nikialeksey:goo:0.0.2'
     implementation 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.6.0'
     implementation 'org.apache.maven:maven-plugin-api:3.6.0'
     testCompile group: 'junit', name: 'junit', version: '4.12'
@@ -27,7 +27,7 @@ ext {
     siteUrl = 'https://github.com/nikialeksey/nullfree'
     gitUrl = 'https://github.com/nikialeksey/nullfree.git'
 
-    libraryVersion = '1.4.2'
+    libraryVersion = '1.4.3'
 
     developerId = 'nikialeksey'
     developerName = 'Alexey Nikitin'
@@ -88,7 +88,7 @@ if (project.rootProject.file('local.properties').exists()) {
                     dependencyNode = dependenciesNode.appendNode('dependency')
                     dependencyNode.appendNode('groupId', 'com.nikialeksey')
                     dependencyNode.appendNode('artifactId', 'goo')
-                    dependencyNode.appendNode('version', '0.0.1')
+                    dependencyNode.appendNode('version', '0.0.2')
                 }
             }
         }
