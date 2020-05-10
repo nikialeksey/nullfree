@@ -28,6 +28,8 @@ public class NullfreeMojo extends AbstractMojo {
     private boolean skipComparisions;
     @Parameter(readonly = true, defaultValue = "0")
     private int threshold;
+    @Parameter(readonly = true, defaultValue = "false")
+    private boolean offline;
 
     @Override
     public void execute() throws MojoExecutionException {
@@ -55,15 +57,17 @@ public class NullfreeMojo extends AbstractMojo {
                     );
                 }
             ).badge();
-            badge.send(
-                new URL(
-                    String.format(
-                        "https://iwillfailyou.com/nullfree/%s/%s",
-                        origin.user(),
-                        origin.repo()
+            if (!offline) {
+                badge.send(
+                    new URL(
+                        String.format(
+                            "https://iwillfailyou.com/nullfree/%s/%s",
+                            origin.user(),
+                            origin.repo()
+                        )
                     )
-                )
-            );
+                );
+            }
             badge.failIfRed();
         } catch (final GooException e) {
             throw new MojoExecutionException("Can not get the origin from git repo.", e);

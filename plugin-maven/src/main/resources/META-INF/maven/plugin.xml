@@ -2,7 +2,7 @@
   <description>Nullfree maven plugin</description>
   <groupId>com.nikialeksey</groupId>
   <artifactId>nullfree-maven-plugin</artifactId>
-  <version>1.4.3</version>
+  <version>1.5.0</version>
   <goalPrefix>nullfree</goalPrefix>
   <inheritedByDefault>true</inheritedByDefault>
   <mojos>
@@ -42,6 +42,14 @@
           <editable>false</editable>
           <description>Nulls threshold.</description>
         </parameter>
+        <parameter>
+          <name>offline</name>
+          <type>java.lang.Boolean</type>
+          <required>false</required>
+          <editable>false</editable>
+          <description>Offline mode. Badge will not work if enabled.
+          </description>
+        </parameter>
       </parameters>
       <configuration>
         <baseDir implementation="java.io.File">
@@ -53,6 +61,9 @@
         <threshold implementation="java.lang.Integer">
           0
         </threshold>
+        <offline implementation="java.lang.Boolean">
+          false
+        </offline>
       </configuration>
     </mojo>
   </mojos>

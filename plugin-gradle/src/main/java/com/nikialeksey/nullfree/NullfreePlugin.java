@@ -49,15 +49,17 @@ public class NullfreePlugin implements Plugin<Project> {
                             );
                         }
                     ).badge();
-                    badge.send(
-                        new URL(
-                            String.format(
-                                "https://iwillfailyou.com/nullfree/%s/%s",
-                                origin.user(),
-                                origin.repo()
+                    if (!settings.getOffline()) {
+                        badge.send(
+                            new URL(
+                                String.format(
+                                    "https://iwillfailyou.com/nullfree/%s/%s",
+                                    origin.user(),
+                                    origin.repo()
+                                )
                             )
-                        )
-                    );
+                        );
+                    }
                     badge.failIfRed();
                 } catch (final GooException e) {
                     throw new GradleScriptException("Can not get the origin from git repo.", e);
