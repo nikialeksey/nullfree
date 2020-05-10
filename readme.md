@@ -38,7 +38,7 @@ will be gone. **Let's stop using `null`!**
 Add the **Nullfree** plugin:
 ```groovy
 plugins {
-    id 'com.nikialeksey.nullfree' version '1.4.3'
+    id 'com.nikialeksey.nullfree' version '1.5.0'
 }
 ```
 
@@ -53,7 +53,7 @@ Add the **Nullfree** plugin:
 <plugin>
     <groupId>com.nikialeksey</groupId>
     <artifactId>nullfree-maven-plugin</artifactId>
-    <version>1.4.3</version>
+    <version>1.5.0</version>
 </plugin>
 ```
 
@@ -99,7 +99,7 @@ nullfree {
 <plugin>
     <groupId>com.nikialeksey</groupId>
     <artifactId>nullfree-maven-plugin</artifactId>
-    <version>1.4.3</version>
+    <version>1.5.0</version>
     <configuration>
         <skipComparisions>true</skipComparisions>
     </configuration>
@@ -121,9 +121,33 @@ nullfree {
 <plugin>
     <groupId>com.nikialeksey</groupId>
     <artifactId>nullfree-maven-plugin</artifactId>
-    <version>1.4.3</version>
+    <version>1.5.0</version>
     <configuration>
         <threshold>5</threshold>
+    </configuration>
+</plugin>
+```
+
+## Offline mode
+You could use nullfree without badge and external service 
+[`https://iwillfailyou.com/nullfree/`](https://iwillfailyou.com/nullfree/)
+with `offline` mode
+
+### Gradle plugin
+```groovy
+nullfree {
+    offline = true
+}
+```
+
+### Maven plugin
+```xml
+<plugin>
+    <groupId>com.nikialeksey</groupId>
+    <artifactId>nullfree-maven-plugin</artifactId>
+    <version>1.5.0</version>
+    <configuration>
+        <offline>true</offline>
     </configuration>
 </plugin>
 ```
