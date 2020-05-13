@@ -153,6 +153,8 @@ nullfree {
 ```
 
 ## Changelog
+`1.4.3` - Suppress works with overrides
+
 `1.4.2` - Support all (from 1 to 12) java version syntax when parsing nulls
 
 `1.4.1` - Parsing error tips in exception message
