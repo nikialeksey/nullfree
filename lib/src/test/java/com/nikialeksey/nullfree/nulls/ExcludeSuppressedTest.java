@@ -22,4 +22,23 @@ public class ExcludeSuppressedTest {
             IsEqual.equalTo(true)
         );
     }
+
+    @Test
+    public void asd() throws Exception {
+        Assert.assertThat(
+            new ExcludeSuppressed(
+                new JavaSourceFile(
+                    "class A {\n",
+                    "    @Override\n",
+                    "    @SuppressWarnings(\"nullfree\")\n",
+                    "    void method() {\n",
+                    "        String name = \"asd\";\n",
+                    "        if (name == null) {}\n",
+                    "    }\n",
+                    "}\n"
+                ).nulls()
+            ).asList().isEmpty(),
+            IsEqual.equalTo(true)
+        );
+    }
 }

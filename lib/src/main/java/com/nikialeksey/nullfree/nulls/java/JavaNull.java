@@ -47,7 +47,8 @@ public class JavaNull implements Null {
 
                 if (declaration.isAnnotationPresent("SuppressWarnings")) {
                     final Optional<AnnotationExpr> suppressAnnotation = node.findFirst(
-                        AnnotationExpr.class
+                        AnnotationExpr.class,
+                        expr -> "SuppressWarnings".equals(expr.getNameAsString())
                     );
                     if (suppressAnnotation.isPresent()) {
                         final List<StringLiteralExpr> values = suppressAnnotation.get().findAll(
