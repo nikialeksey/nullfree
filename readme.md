@@ -1,5 +1,8 @@
 # Nullfree
 
+**_It's deprecated now and won't be supported anymore. If you want to use this 
+type of analysis in your project then use the [iwillfailyou.com](https://iwillfailyou.com)_**
+
 ![Elegant Objects Respected Here](https://www.elegantobjects.org/badge.svg)
 
 ![nullfree status](https://iwillfailyou.com/nullfree/nikialeksey/nullfree)
